@@ -7,7 +7,11 @@ class MarkovMachine {
 
   constructor(text) {
     let words = text.split(/[ \r\n]+/);
+    console.log(words);
     // MORE CODE HERE
+    this.words = words;
+    this.chain = this.makeChains();
+
   }
 
   /** set markov chains:
@@ -17,6 +21,17 @@ class MarkovMachine {
 
   makeChains() {
     // MORE CODE HERE
+    let wordMap = new Map();
+    for(let i = 0; i < this.words.length; i++){
+      let word = this.words[i];
+      let nextWord = this.words[i+1] || null;
+      if(wordMap.has(word)){
+        wordMap.get(word).push(nextWord);
+      } else {
+        wordMap.set(word, [nextWord]);
+      }
+    }
+    return wordMap;
   }
 
 
@@ -26,3 +41,5 @@ class MarkovMachine {
     // MORE CODE HERE
   }
 }
+
+module.exports = {MarkovMachine};
