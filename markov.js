@@ -22,14 +22,14 @@ class MarkovMachine {
   makeChains() {
     // MORE CODE HERE
     let wordMap = new Map();
+
     for(let i = 0; i < this.words.length; i++){
+
       let word = this.words[i];
       let nextWord = this.words[i+1] || null;
-      if(wordMap.has(word)){
-        wordMap.get(word).push(nextWord);
-      } else {
-        wordMap.set(word, [nextWord]);
-      }
+
+      wordMap.has(word) ? wordMap.get(word).push(nextWord) : wordMap.set(word, [nextWord])
+
     }
     return wordMap;
   }
@@ -60,11 +60,9 @@ class MarkovMachine {
   }
 }
 module.exports = {MarkovMachine};
-// textArr.push(word);
-// let wordList = this.getRandomElement((this.chain).get(word))
-// // console.log('chainWord = ', this.chain.get(word));
-// let nextWord = this.getRandomElement(wordList)
-// console.log(wordChoice);
 
-// word = nextWord;
-// i++;
+// let m = new MarkovMachine('the cat in the hat')
+// console.log(m.chain)
+// m.getText()
+
+
