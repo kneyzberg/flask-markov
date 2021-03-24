@@ -40,24 +40,31 @@ class MarkovMachine {
   getText(numWords = 100) {
     // MORE CODE HERE
     let textArr = [];
-    let wordChoice = this.words;
-    let word = wordChoice[this.getRandom(wordChoice)];
-    console.log(word, "firstword");
-    let i = 0;
+    let wordChoice = Array.from(this.words);
+    let word = this.getRandomElement(wordChoice)
+    
+    
+    while (textArr.length < numWords && word !== null){
+      textArr.push(word)
 
-    while (i < 100 && this.chain.get(word) !== null){
-      textArr.push(word);
-      console.log(word, "word in loop");
-      let index = this.getRandom(this.chain.get(word))
-      let nextWord = this.chain.get(word)[index];
-      word = nextWord;
-      i++;
+      let nextWord = this.getRandomElement(this.chain.get(word))
+      //append to textarr the newly defined word
+      word = nextWord
+
     }
     return textArr.join(" ");
   }
-
-  getRandom(arr){
+  
+  getRandomElement(arr){
     return arr[Math.floor(Math.random() * arr.length)];
   }
 }
 module.exports = {MarkovMachine};
+// textArr.push(word);
+// let wordList = this.getRandomElement((this.chain).get(word))
+// // console.log('chainWord = ', this.chain.get(word));
+// let nextWord = this.getRandomElement(wordList)
+// console.log(wordChoice);
+
+// word = nextWord;
+// i++;
